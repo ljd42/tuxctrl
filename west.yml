@@ -1,0 +1,23 @@
+# Copyright (c) Loic Domaigne
+# SPDX-License-Identifier: Apache-2.0
+
+manifest:
+
+  remotes:
+    - name: zephyrproject-rtos
+      url-base: https://github.com/zephyrproject-rtos
+
+  projects:
+    - name: zephyr
+      remote: zephyrproject-rtos
+      revision: main
+      import:
+        # By using name-allowlist we can clone only the modules that are
+        # strictly needed by the application.
+        name-allowlist:
+          - cmsis_6    # required by the ARM port for Cortex-M
+          - hal_nordic # required by the Nana BLE Sense board
+    - name: zscilib
+      remote: zephyrproject-rtos
+      revision: master
+      path: modules/zscilib
