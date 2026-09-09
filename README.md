@@ -39,8 +39,12 @@ and the drawback of using Euler's angles (gimbal lock among other).
    You will need to install the arduino's variant of bossac. The commands below
    assumes that the bossac tools has been build from
    [source](https://github.com/arduino/BOSSA) in `$HOME/tools`
-3. Connect your board to your host machine. Double press reset to switch 
-   to ABC. 
+   <br/>
+
+3. Connect your board to your host machine. Double tap reset to switch to boatloader mode.
+   You should see a pulsing orange LED near the USB port.
+   <br/>
+
 4. Flash the firmware:
    ```
    west flash --bossac="$HOME/tools/BOSSA/bin/bossac"
@@ -60,8 +64,6 @@ and the drawback of using Euler's angles (gimbal lock among other).
 3. Rotate the board, tux should rotate accordingly. 
    reset the board to set the initial board position.
 
-### Known problem 
-
 ### More on tuxviewer 
 ```
 python tux.py -w 1024x768             # use a window of size 1024x768
@@ -69,11 +71,6 @@ python tux.py -w 1024x768 -p COM1     # use serial port COM1
 python tux.py -w 1024x768 -p COM1 -v  # verbose (debug message)
 python tux.py -h                      # show usage
 ```
-
-## Future Works 
-
-## Links 
-
 
 ## Technically...
 
@@ -91,57 +88,12 @@ CDC/ACM.
 ### Zephyr features 
 
 - west application 
-- 
+- custom board
+- external module
+- hardware abstraction (sensors)
 
-## Board Setup
-
-1. clone this repo
-   ```
-   mkdir myrepo
-   west -m https://github/ljd42/tuxctrl 
-   west update
-   ```
- 
-2. build & flash
-   ```
-   cd tuxctrl 
-   west build -b arduino_nano_33_ble_rev2/nrf52840/sense tuxctrl/app
-   west flash
-   ```
-
-3. tux display 
-   ```
-   cd host 
-   python -m venv .venv 
-   .venv/bin/activate  # or whatever activation script is needed
-   pip install -r requirements.txt
-   ```
-
-## Running the Demo 
-
-1. Start the tux viewer, assuming the board is connected to /dev/ttyACM0
-   ```
-   python tux.py -w 1280x1024 -v 
-   ```
-
-2. connect the board to the computer using USB.
-   Use `-p` option to change the serial port.
-
-3. Rotate the board, tux should rotate accordingly. 
-   reset the board to set the initial board position.
-
-4. 
-   
-3. Other :
-   ```
-   python tux.py -w 1024x768             # use a window of size 1024x768
-   python tux.py -w 1024x768 -p COM1     # use serial port COM1
-   python tux.py -w 1024x768 -p COM1 -v  # verbose (debug message)
-   python tux.py -h                      # show usage
-   ```
 
 ## Further Works 
 
 This demo is biased toward the Nano Sense 33 BLE rev2. Make the application
-more generic 
-Use magnetic field
+more generic use magnetic field.
